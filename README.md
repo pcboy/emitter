@@ -160,6 +160,13 @@ For the clustered (multi-server) mode, the container can be started using the si
 docker run -d -p 8080:8080 -p 4000:4000 -e EMITTER_LICENSE=[key] -e EMITTER_CLUSTER_SEED=[seed] -e EMITTER_CLUSTER_PASSPHRASE=[name] emitter/server
 ```
 
+## Let's encrypt support in Docker Container
+```shell
+docker run -p 80:80  -e EMITTER_LICENSE=[key] -e LETSENCRYPT_DOMAIN=[domain] -e EMITTER_TLS_PRIVATE=/root/key.pem -e EMITTER_TLS_CERTIFICATE=/root/cert.pem emitter:latest ./lets_encrypt.sh
+docker run -d -p 8080:8080 -p 80:80 -e EMITTER_LICENSE=[key] -e LETSENCRYPT_DOMAIN=[domain] -e EMITTER_TLS_PRIVATE=/root/key.pem -e EMITTER_TLS_CERTIFICATE=/root/cert.pem emitter:latest
+
+```
+
 ## Support, Discussion, and Community
 
 If you need any help with Emitter Server or any of our client SDKs, please join us at either our [gitter chat](https://gitter.im/emitter-io/public) where most of our team hangs out at or drop us an e-mail at <info@emitter.io>.
